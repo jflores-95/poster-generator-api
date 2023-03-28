@@ -4,7 +4,7 @@ Esta API permite obtener información de álbumes y canciones de iTunes, incluye
 
 ## Instalación
 
-1. Clona este repositorio: `git clone https://github.com/jflores-/poster-generator-api.git`
+1. Clona este repositorio: `git clone https://github.com/jflores-95/poster-generator-api.git`
 2. Entra al directorio del proyecto: `cd poster-generator-api`
 3. Instala las dependencias: `npm install`
 4. Inicia el servidor: `npm start`
