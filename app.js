@@ -3,8 +3,6 @@ import fetch from 'node-fetch';
 
 const app = express();
 
-const ITUNES_API_URL = 'https://itunes.apple.com/search?entity=album&term=';
-
 app.get('/albums', (req, res) => {
   const albumName = req.query.name;
   const url = `https://itunes.apple.com/search?term=${albumName}&entity=album`;
