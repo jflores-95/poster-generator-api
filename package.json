@@ -1,0 +1,14 @@
+{
+    "name": "itunes-albums-express",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Consulta de álbumes de iTunes con Node.js y Express",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "node-fetch": "^3.3.1"
+    }
+}
