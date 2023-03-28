@@ -1,10 +1,10 @@
-# Poster Generator API
+# Poster Generator API 
 
 This is a simple Node.js API that utilizes the iTunes Search API to retrieve information about albums, songs, and artists. 
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/example-user/poster-generator-api.git`
+1. Clone the repository: `git clone https://github.com/jflores-95/poster-generator-api.git`
 2. Install dependencies: `npm install`
 
 ## Usage
@@ -42,7 +42,7 @@ Esta API permite obtener información de álbumes y canciones de iTunes, incluye
 
 ## Instalación
 
-1. Clona este repositorio: `git clone https://github.com/tu_usuario/poster-generator-api.git`
+1. Clona este repositorio: `git clone https://github.com/jflores-95/poster-generator-api.git`
 2. Entra al directorio del proyecto: `cd poster-generator-api`
 3. Instala las dependencias: `npm install`
 4. Inicia el servidor: `npm start`
