@@ -1,38 +1,49 @@
-Consulta de álbumes de iTunes con Node.js y Express
-Este es un ejemplo sencillo de cómo utilizar Node.js y el framework Express para realizar consultas al endpoint de información de álbumes de iTunes.
+# Poster Generator API
 
-Requerimientos
-Para ejecutar esta aplicación, necesitarás tener instalado lo siguiente en tu sistema:
+Esta API permite obtener información de álbumes y canciones de iTunes, incluyendo la lista de canciones y la imagen de portada en alta definición.
 
-Node.js
-npm
+## Instalación
 
-Para instalar las dependencias del proyecto, debes ejecutar el siguiente comando en la terminal:
+1. Clona este repositorio: `git clone https://github.com/tu_usuario/poster-generator-api.git`
+2. Entra al directorio del proyecto: `cd poster-generator-api`
+3. Instala las dependencias: `npm install`
+4. Inicia el servidor: `npm start`
 
+## Endpoints
 
-Uso
-Para iniciar la aplicación, debes ejecutar el siguiente comando en la terminal:
+### GET /albums
 
+Busca información de un álbum por su nombre.
 
+**Parámetros**
 
-npm start
-Esto iniciará el servidor en el puerto 3000. Luego, puedes acceder a la aplicación en tu navegador web utilizando la siguiente dirección URL:
+- `name`: nombre del álbum a buscar.
 
+**Ejemplo de uso**
 
-http://localhost:3000
-Consulta de álbumes
-Para realizar una consulta de un álbum en particular, debes acceder a la siguiente dirección URL en tu navegador web:
-
-
-http://localhost:3000/album/{nombre-del-album}
-Reemplaza {nombre-del-album} por el nombre del álbum que deseas buscar. Por ejemplo:
+curl -X GET "http://localhost:3000/albums?name=circles"
 
 
-http://localhost:3000/album/Thriller
-Esto devolverá un objeto JSON con la información del álbum encontrado en iTunes.
+### GET /search
 
-Créditos
-Este proyecto fue desarrollado por Jose Flores.
+Busca información de canciones y álbumes relacionados con una palabra clave.
 
-Licencia
-Este proyecto se encuentra bajo la licencia MIT.
+**Parámetros**
+
+- `term`: palabra clave a buscar.
+
+**Ejemplo de uso**
+
+curl -X GET "http://localhost:3000/search?term=post%20malone"
+
+## Tecnologías utilizadas
+
+- Node.js
+- Express
+- node-fetch
+- Nodemon (sólo en desarrollo)
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+
