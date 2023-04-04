@@ -1,7 +1,16 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import cors from 'cors'
 
 const app = express();
+
+app.use(cors());
+
+// const corsOptions = {
+//   origin: 'http://localhost:3001'
+// };
+
+// app.use(cors(corsOptions));
 
 app.get('/albums', (req, res) => {
   const albumName = req.query.name;
@@ -66,7 +75,6 @@ app.get('/albumId', (req, res) => {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log("DATA",data)
       const results = {
         tracksCount: data.resultCount,
         trackList: data.results
@@ -80,3 +88,4 @@ app.get('/albumId', (req, res) => {
 app.listen(3000, () => {
   console.log('El servidor está funcionando en el puerto 3000.');
 });
+
