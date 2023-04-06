@@ -1,6 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors'
+import { getAlbumTime, getYearOnly, formatDate } from './utilities.js';
 
 const app = express();
 
@@ -41,7 +42,7 @@ app.get('/albums', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.term;
   const limit = req.query.limit;
-  const url = `https://itunes.apple.com/search?term=${keyword}&entity=album,song&limit=${limit}`;
+  const url = `https://itunes.apple.com/search?term=${keyword}&entity=album`;
   
   fetch(url)
     .then(response => response.json())
@@ -50,16 +51,8 @@ app.get('/search', (req, res) => {
         const item = {
           name: result.trackName || result.collectionName,
           artist: result.artistName,
-          type: result.wrapperType,
           artworkUrl: result.artworkUrl100.replace(/100x100/g, '500x500'),
-          previewUrl: result.previewUrl,
           albumId: result.collectionId,
-          contentAdvisoryRating: result.contentAdvisoryRating,
-          trackCount: result.trackCount,
-          copyright: result.copyright,
-          country: result.country,
-          releaseDate: result.releaseDate,
-          primaryGenreName: result.primaryGenreName
         };   
         return item;
       });
@@ -76,10 +69,20 @@ app.get('/albumId', (req, res) => {
     .then(response => response.json())
     .then(data => {
       const results = {
-        tracksCount: data.resultCount,
-        trackList: data.results
+        albumName: data.results[0].collectionName,
+        artWork:data.results[0].artworkUrl100.replace(/100x100/g, '1000x1000'),
+        artistName:data.results[0].artistName,
+        releaseDate: formatDate(data.results[0].releaseDate),
+        copyRight:data.results[0].copyRight,
+        contentAdvisoryRating: data.results[0].contentAdvisoryRating,
+        tracksCount: data.results[0].trackCount,
+        primaryGenreName: data.results[0].primaryGenreName,
+        albumTime: getAlbumTime(data.results),
+        releaseYear: getYearOnly(data.results[0].releaseDate),
+        trackList: data.results.shift(),
+      
       }
-
+      
       res.send(results);
     })
     .catch(error => console.log(error));
