@@ -1,7 +1,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors'
-import { getAlbumTime, getYearOnly, formatDate } from './utilities.js';
+import { getAlbumTime, getYearOnly, formatDate, getTrackList} from './utilities.js';
 
 const app = express();
 
@@ -68,8 +68,10 @@ app.get('/albumId', (req, res) => {
   fetch(url)
     .then(response => response.json())
     .then(data => {
+      console.log("DATA",data)
       const results = {
         albumName: data.results[0].collectionName,
+        albumId: data.results[0].collectionId,
         artWork:data.results[0].artworkUrl100.replace(/100x100/g, '1000x1000'),
         artistName:data.results[0].artistName,
         releaseDate: formatDate(data.results[0].releaseDate),
@@ -79,7 +81,7 @@ app.get('/albumId', (req, res) => {
         primaryGenreName: data.results[0].primaryGenreName,
         albumTime: getAlbumTime(data.results),
         releaseYear: getYearOnly(data.results[0].releaseDate),
-        trackList: data.results.shift(),
+        trackList: getTrackList(data.results),
       
       }
       

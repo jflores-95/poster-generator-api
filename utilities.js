@@ -1,7 +1,5 @@
 export const getAlbumTime = (tracks) => {
-    const onlyTracks = tracks;
-    onlyTracks.shift();
-    return getTotalDuration(onlyTracks);
+    return getTotalDuration(getTrackList(tracks));
 }
 
 function convertDuration(milliseconds) {
@@ -24,12 +22,14 @@ function convertDuration(milliseconds) {
 
   export const formatDate = (dateISO) => {
     const fecha = new Date(dateISO);
-    const month = fecha.getMonth() + 1;
-    const day = fecha.getDate();
-    const year = fecha.getFullYear();
-    const formattedDate = `${month < 10 ? '0' : ''}${month}/${day < 10 ? '0' : ''}${day}/${year}`;
-    return formattedDate; 
-    
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(fecha);
+    return formattedDate;
+  }
+
+  export const getTrackList = (albumTracks) => {
+    const tracks = albumTracks.filter(track => track.wrapperType === 'track');
+    return tracks;
   }
 
 
