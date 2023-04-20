@@ -7,12 +7,6 @@ const app = express();
 
 app.use(cors());
 
-// const corsOptions = {
-//   origin: 'http://localhost:3001'
-// };
-
-// app.use(cors(corsOptions));
-
 app.get('/albums', (req, res) => {
   const albumName = req.query.name;
   const url = `https://itunes.apple.com/search?term=${albumName}&entity=album`;
@@ -64,18 +58,20 @@ app.get('/search', (req, res) => {
 app.get('/albumId', (req, res) => {
   const albumId = req.query.albumId;
   const url = `https://itunes.apple.com/lookup?id=${albumId}&entity=song`;
+  console.log("ESTA CONSULTA")
   
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log("DATA",data)
+      console.log("AQUI", data)
+      console.log(data.results[0].copyright)
       const results = {
         albumName: data.results[0].collectionName,
         albumId: data.results[0].collectionId,
         artWork:data.results[0].artworkUrl100.replace(/100x100/g, '1000x1000'),
         artistName:data.results[0].artistName,
         releaseDate: formatDate(data.results[0].releaseDate),
-        copyRight:data.results[0].copyRight,
+        copyright:data.results[0].copyright,
         contentAdvisoryRating: data.results[0].contentAdvisoryRating,
         tracksCount: data.results[0].trackCount,
         primaryGenreName: data.results[0].primaryGenreName,
