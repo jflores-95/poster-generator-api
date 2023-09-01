@@ -80,7 +80,7 @@ curl -X GET "http://localhost:3000/search?term=post%20malone"
 - Node.js
 - Express
 - node-fetch
-- Nodemon (sólo en desarrollo)
+- Nodemon (sólo en desarrollo).
 
 ## Licencia
 
