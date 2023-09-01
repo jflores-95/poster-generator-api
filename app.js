@@ -58,13 +58,10 @@ app.get('/search', (req, res) => {
 app.get('/albumId', (req, res) => {
   const albumId = req.query.albumId;
   const url = `https://itunes.apple.com/lookup?id=${albumId}&entity=song`;
-  console.log("ESTA CONSULTA")
   
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log("AQUI", data)
-      console.log(data.results[0].copyright)
       const results = {
         albumName: data.results[0].collectionName,
         albumId: data.results[0].collectionId,
@@ -86,7 +83,7 @@ app.get('/albumId', (req, res) => {
     .catch(error => console.log(error));
 });
 
-app.listen(3000, () => {
-  console.log('El servidor está funcionando en el puerto 3000.');
+app.listen(8000, () => {
+  console.log('Server is runnning in port 8000.');
 });
 
