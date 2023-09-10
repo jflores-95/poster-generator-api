@@ -83,7 +83,7 @@ app.get('/albumId', (req, res) => {
     .catch(error => console.log(error));
 });
 
-app.listen(3005, () => {
+app.listen(8000, () => {
   console.log('Server is runnning in port 8000.');
 });
 
