@@ -83,7 +83,12 @@ app.get('/albumId', (req, res) => {
     .catch(error => console.log(error));
 });
 
-app.listen(8000, () => {
-  console.log('Server is runnning in port 8000.');
-});
+const PORT = process.env.PORT || 8000;
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running in port ${PORT}.`);
+  });
+}
+
+export default app;
 
